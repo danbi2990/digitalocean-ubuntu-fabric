@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from __init__ import py, virtualenv
+from .__init__ import py, virtualenv
 
 
 def migrate():

@@ -3,20 +3,24 @@
 
 from __future__ import with_statement
 from contextlib import contextmanager as _contextmanager
-from fabric.api import run, env, run, cd, prefix, local
+from fabric.api import env, run, cd, prefix, local
 # extra content
-from django_commands import *
-from nginx_commands import *
-from supervisor_commands import *
-from ubuntu_commands import *
-from swap_commands import *
+from .django_commands import *
+from .nginx_commands import *
+from .supervisor_commands import *
+from .ubuntu_commands import *
+from .swap_commands import *
 
 
-
-env.hosts = ['mark42']
-env.user = 'root'
+env.hosts = ['danbi2']
+env.user = 'jake'
 env.directory = '/www/mark42-pack/mark42/'
 env.activate = 'source /www/mark42-pack/bin/activate'
+
+
+def hello():
+    import sys
+    print(sys.path)
 
 
 @_contextmanager

@@ -1,20 +1,46 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from fabric.api import run, cd
+from fabric.operations import put
 
 APT_GET_PACKAGES = [
-    "build-essential",
+    # "build-essential",
+    # "git",
+    # "vim",
+    # "python-dev",
+    # "python-virtualenv",
+    # "python-pip",
+    "nginx",
     "git",
-    "vim",
-    "python-dev",
-    "python-virtualenv",
-    "python-pip",
+    "python3.6",
 ]
+APT_GET_REPOSITORY = [
+    "ppa:jonathonf/python-3.6",
+]
+GET_PIP = "get-pip.py"
+
+
+def add_repo():
+    "Add repository"
+    run("sudo add-apt-repository " + " ".join(APT_GET_REPOSITORY))
+    run("sudo apt-get update")
 
 
 def setup():
     "Install default packages for django"
-    run("apt-get install " + " ".join(APT_GET_PACKAGES))
+    run("sudo apt-get install " + " ".join(APT_GET_PACKAGES))
+
+
+def install_pip():
+    "Install PIP"
+    # print(GET_PIP)
+    # with open(GET_PIP, encoding='utf-8') as pip:
+    #     for line in pip:
+    #         print(line)
+    put(GET_PIP, "~/")
+    run("sudo python3.6 ~/get-pip.py")
+    run("sudo rm -f ~/get-pip.py")
+    # run("")
 
 
 def setup_webserver():
